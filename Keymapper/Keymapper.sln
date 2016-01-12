@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeymapDesigner", "KeymapDesigner\KeymapDesigner.csproj", "{D673F5BD-F507-473D-BB7C-F980C9F05F43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidListenTest", "HidListenTest\HidListenTest.csproj", "{A36F8317-1C09-41E1-A1B0-908F6E348763}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D673F5BD-F507-473D-BB7C-F980C9F05F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D673F5BD-F507-473D-BB7C-F980C9F05F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D673F5BD-F507-473D-BB7C-F980C9F05F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D673F5BD-F507-473D-BB7C-F980C9F05F43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A36F8317-1C09-41E1-A1B0-908F6E348763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A36F8317-1C09-41E1-A1B0-908F6E348763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A36F8317-1C09-41E1-A1B0-908F6E348763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A36F8317-1C09-41E1-A1B0-908F6E348763}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

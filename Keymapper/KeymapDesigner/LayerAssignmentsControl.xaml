@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="KeymapDesigner.LayerAssignmentsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KeymapDesigner"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <ItemsControl ItemsSource="{Binding Path=Assignments}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <Canvas Height="430" Width="1070" />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <local:KeyAssignmentControl 
+                    FontSize="12"
+                    DataContext="{Binding}"/>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+        <ItemsControl.ItemContainerStyle>
+            <Style TargetType="ContentPresenter">
+                <Setter Property="Canvas.Left" Value="{Binding Path=Key.Left}" />
+                <Setter Property="Canvas.Top" Value="{Binding Path=Key.Top}" />
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <TransformGroup>
+                            <RotateTransform Angle="{Binding Path=Key.Rotation}" CenterX="{Binding Path=Key.HalfWidth}" CenterY="{Binding Path=Key.HalfHeight}" />
+                        </TransformGroup>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ItemsControl.ItemContainerStyle>
+    </ItemsControl>
+</UserControl>

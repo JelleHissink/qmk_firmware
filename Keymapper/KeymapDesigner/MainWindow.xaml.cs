@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using KeymapDesigner.Model;
 using System.Xml.Linq;
 using System.Configuration;
+using System.IO;
 
 namespace KeymapDesigner
 {
@@ -26,11 +27,50 @@ namespace KeymapDesigner
         private HelpOverlay _helpOverlay;
         private ApplicationModel _model = new ApplicationModel();
 
+        private static class Settings
+        {
+            public static string KeymapXml =>
+                ConfigurationManager.AppSettings["keymapxml"];
+
+            public static bool SaveKeymapXml =>
+                bool.Parse(ConfigurationManager.AppSettings["savekeymapxml"]);
+
+            public static string WriteKeymapCCode =>
+                ConfigurationManager.AppSettings["writeKeymapCCode"];
+        }
+
+        private void Reload()
+        {
+            if (_model.ActiveLayer != null)
+            {
+                _model.ActiveLayer.PropertyChanged -= ActiveLayer_PropertyChanged;
+            }
+            try
+            {
+                _model.LoadKeymap(Settings.KeymapXml);
+
+                if (Settings.SaveKeymapXml)
+                {
+                    _model.SaveKeymap(Settings.KeymapXml);
+                }
+                if (!string.IsNullOrWhiteSpace(Settings.WriteKeymapCCode))
+                {
+                    var codeWriter = new WriteCCode();
+                    codeWriter.Update(Settings.WriteKeymapCCode, _model.Definition);
+                }
+            }
+            finally
+            {
+
+                if (_model.ActiveLayer != null)
+                {
+                    _model.ActiveLayer.PropertyChanged += ActiveLayer_PropertyChanged;
+                }
+            }
+        }
+
         public MainWindow()
         {
-            var keymapXml = ConfigurationManager.AppSettings["keymapxml"];
-            var saveKeymapXml = bool.Parse(ConfigurationManager.AppSettings["savekeymapxml"]);
-
             InitializeComponent();
 
             _helpOverlay = new HelpOverlay()
@@ -40,16 +80,33 @@ namespace KeymapDesigner
 
             DataContext = _model;
 
+            Reload();
+
             _model.HIDListener.Start();
 
-            _model.LoadKeymap(keymapXml);
+            this.Closing += MainWindow_Closing;
 
-            if (saveKeymapXml)
+            var fileWatcher = new FileSystemWatcher(System.IO.Path.GetDirectoryName(Settings.KeymapXml), System.IO.Path.GetFileName(Settings.KeymapXml));
+            fileWatcher.Changed += FileWatcher_Changed;
+            fileWatcher.EnableRaisingEvents = true;
+        }
+
+        private void FileWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            try
             {
-                _model.SaveKeymap(keymapXml);
+                Reload();
             }
+            catch
+            {
+            }
+        }
 
-            _model.ActiveLayer.PropertyChanged += ActiveLayer_PropertyChanged;
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _model.HIDListener.Stop();
+            _helpOverlay.Hide();
+            _helpOverlay.Close();
         }
 
         private void ActiveLayer_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

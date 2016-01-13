@@ -116,6 +116,7 @@
     <Compile Include="Model\Layer.cs" />
     <Compile Include="Model\Observable.cs" />
     <Compile Include="Model\PhysicalKey.cs" />
+    <Compile Include="Model\WriteCCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

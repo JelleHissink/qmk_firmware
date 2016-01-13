@@ -47,7 +47,7 @@
     <Key>KC_9</Key>
     <Key>KC_0</Key>
     <Key>KC_MINUS</Key>
-    <Key>TG(1)</Key>
+    <Key>MO(3)</Key>
     <Key>KC_Y</Key>
     <Key>KC_U</Key>
     <Key>KC_I</Key>
@@ -79,7 +79,7 @@
     <Key>KC_TAB</Key>
     <Key>KC_ENTER</Key>
   </Layer>
-  <Layer name="PROGRAMMER" color="#FFF4D35E" textcolor="#FF000000" showhelpoverlay="true">
+  <Layer name="PROGRAMMER" color="#FFF4D35E" textcolor="#FF000000" showhelpoverlay="false">
     <Key>KC_TRANSPARENT</Key>
     <Key>KC_F1</Key>
     <Key>KC_F2</Key>
@@ -157,7 +157,7 @@
     <Key>KC_TRANSPARENT</Key>
     <Key>KC_TRANSPARENT</Key>
   </Layer>
-  <Layer name="MOUSE" color="#FFEE964B" textcolor="#FF000000" showhelpoverlay="true">
+  <Layer name="MOUSE" color="#FFEE964B" textcolor="#FF000000" showhelpoverlay="false">
     <Key>KC_TRANSPARENT</Key>
     <Key>KC_TRANSPARENT</Key>
     <Key>KC_TRANSPARENT</Key>
@@ -235,7 +235,7 @@
     <Key>KC_TRANSPARENT</Key>
     <Key>KC_WWW_BACK</Key>
   </Layer>
-  <Layer name="Spare1" color="#FFF95738" textcolor="#FF000000" showhelpoverlay="true">
+  <Layer name="Help overlay" color="#FFF95738" textcolor="#FF000000" showhelpoverlay="true">
     <Key>KC_TRANSPARENT</Key>
     <Key>KC_TRANSPARENT</Key>
     <Key>KC_TRANSPARENT</Key>

@@ -12,3 +12,4 @@ cd /qmk_firmware/keyboard/ergodox_ez
 make KEYMAP=jelle && avr-objcopy -O ihex -R .eeprom -R .fuse -R .lock -R .signature ergodox_ez.elf ergodox_ez.hex
 
 /qmk_firmware/teensy &
+/qmk_firmware/hid_listen &

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KeymapDesigner.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KeymapDesigner
 {
     /// <summary>
-    /// Interaction logic for KeyControl.xaml
+    /// Interaction logic for AssignKeyWindow.xaml
     /// </summary>
-    public partial class KeyAssignmentControl : UserControl
+    public partial class AssignKeyWindow : Window
     {
-        public KeyAssignmentControl()
+        public AssignKeyWindow(KeyAssignment keyAssignment)
         {
             InitializeComponent();
+            DataContext = keyAssignment;
         }
     }
 }

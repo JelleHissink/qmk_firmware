@@ -102,9 +102,9 @@ namespace KeymapDesigner.Model
                 Key(y: 228, x: 595, w: 54, h: 54, r: -30),
                 Key(y: 302, x: 575, w: 54, h: 54, r: -30),
                 Key(y: 348, x: 602, w: 54, h: 54, r: -30),
-                Key(y: 244, x: 682, w: 54, h: 108, r: -30),
-                Key(y: 271, x: 635, w: 54, h: 108, r: -30)
-            // end thumbpad 
+                Key(y: 271, x: 635, w: 54, h: 108, r: -30),
+                Key(y: 244, x: 682, w: 54, h: 108, r: -30)
+                // end thumbpad 
             )
         {
         }

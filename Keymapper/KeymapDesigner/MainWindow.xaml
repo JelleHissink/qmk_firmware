@@ -5,27 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeymapDesigner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="530" Width="1120">
+        Title="MainWindow" Height="570" Width="1120">
     <TabControl>
         <TabItem Header="Active">
             <Viewbox Stretch="Uniform">
-                <local:LayerAssignmentsControl DataContext="{Binding Path=ActiveLayer}" />
+                <local:ActiveLayerControl ItemsSource="{Binding Path=ActiveLayer.Assignments}" />
             </Viewbox>
         </TabItem>
         <TabItem Header="Layers">
-            <ScrollViewer DataContext="{Binding Path=Definition}">
-                <ItemsControl ItemsSource="{Binding Path=Layers}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <Label Content="{Binding Path=Name}"/>
+            <DockPanel LastChildFill="True">
+                <Grid DockPanel.Dock="Top">
+                    <Button Content="Save" FontSize="12" Margin="10" Padding="10" HorizontalAlignment="Right" Click="SaveButton_Click" />
+                </Grid>
+                <ScrollViewer DataContext="{Binding Path=Definition}">
+                    <ItemsControl ItemsSource="{Binding Path=Layers}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="{Binding Path=Name}"/>
 
-                                <local:LayerAssignmentsControl DataContext="{Binding}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                                    <local:LayerAssignmentsControl ItemsSource="{Binding Path=Assignments}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
         </TabItem>
     </TabControl>
 </Window>

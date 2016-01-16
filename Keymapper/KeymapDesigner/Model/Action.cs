@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Xml.Linq;
 
 namespace KeymapDesigner.Model
@@ -17,6 +18,9 @@ namespace KeymapDesigner.Model
         public virtual string AltShiftLabel => "";
         public abstract string CCode { get; }
         public virtual string XmlValue => CCode;
+
+        public abstract Key Key { get; }
+        public abstract ModifierKeys Modifiers { get; }
 
         public static Action FromXml(XElement element)
         {

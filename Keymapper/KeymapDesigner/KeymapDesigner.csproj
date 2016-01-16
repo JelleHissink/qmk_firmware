@@ -66,15 +66,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ActionEditorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AssignKeyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HelpOverlay.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="KeyAssignmentControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LayerAssignmentsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,21 +82,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ActionEditorControl.xaml.cs">
+      <DependentUpon>ActionEditorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveLayerControl.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AssignKeyWindow.xaml.cs">
+      <DependentUpon>AssignKeyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\AssignActionToKeyAssignmentCommand.cs" />
+    <Compile Include="Converters\ActionTextValidationRule.cs" />
+    <Compile Include="Converters\ActionToKeyAssignmentConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityValueConverter.cs" />
+    <Compile Include="Converters\ActionToStringConverter.cs" />
     <Compile Include="Converters\ColorToSolidColorBrushValueConverter.cs" />
     <Compile Include="HelpOverlay.xaml.cs">
       <DependentUpon>HelpOverlay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="KeyAssignmentControl.xaml.cs">
-      <DependentUpon>KeyAssignmentControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LayerAssignmentsControl.xaml.cs">
-      <DependentUpon>LayerAssignmentsControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="KeyAssignmentDisplayControl.cs" />
+    <Compile Include="KeyAssignmentEditorControl.cs" />
+    <Compile Include="LayerAssignmentsControl.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

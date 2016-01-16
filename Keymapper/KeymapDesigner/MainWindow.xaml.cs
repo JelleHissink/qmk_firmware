@@ -32,9 +32,6 @@ namespace KeymapDesigner
             public static string KeymapXml =>
                 ConfigurationManager.AppSettings["keymapxml"];
 
-            public static bool SaveKeymapXml =>
-                bool.Parse(ConfigurationManager.AppSettings["savekeymapxml"]);
-
             public static string WriteKeymapCCode =>
                 ConfigurationManager.AppSettings["writeKeymapCCode"];
         }
@@ -48,16 +45,6 @@ namespace KeymapDesigner
             try
             {
                 _model.LoadKeymap(Settings.KeymapXml);
-
-                if (Settings.SaveKeymapXml)
-                {
-                    _model.SaveKeymap(Settings.KeymapXml);
-                }
-                if (!string.IsNullOrWhiteSpace(Settings.WriteKeymapCCode))
-                {
-                    var codeWriter = new WriteCCode();
-                    codeWriter.Update(Settings.WriteKeymapCCode, _model.Definition);
-                }
             }
             finally
             {
@@ -124,6 +111,16 @@ namespace KeymapDesigner
                         _helpOverlay.Hide();
                     }
                 });
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            _model.SaveKeymap(Settings.KeymapXml);
+            if (!string.IsNullOrWhiteSpace(Settings.WriteKeymapCCode))
+            {
+                var codeWriter = new WriteCCode();
+                codeWriter.Update(Settings.WriteKeymapCCode, _model.Definition);
             }
         }
     }

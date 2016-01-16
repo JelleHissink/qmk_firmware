@@ -13,6 +13,11 @@ namespace KeymapDesigner.Model
             Label = label;
         }
 
+        public Action[] DefaultActions
+            => AllPredefinedActions
+            .Where(a => a.Category == this)
+            .ToArray();
+
         public string Label { get; }
 
         public override string ToString()
@@ -32,5 +37,33 @@ namespace KeymapDesigner.Model
         public static readonly ActionCategory Mouse = new ActionCategory("Mouse");
         public static readonly ActionCategory Layers = new ActionCategory("Layers");
         public static readonly ActionCategory Other = new ActionCategory("Other");
+
+        public static ActionCategory[] All = new[]
+        {
+            System,
+            Alphabet,
+            Numeric,
+            Numpad,
+            Symbols,
+            FunctionKeys, 
+            Navigation,
+            Spacing,
+            Modifiers,
+            SystemControl,
+            Media,
+            Mouse,
+            Layers,
+            Other
+        };
+
+        private IEnumerable<Action> AllPredefinedActions
+            => Actions.All
+                .Concat(Enumerable.Range(0, 10)
+                    .SelectMany(layer => new Action[] {
+                        new DefaultLayer(layer),
+                        new ToggleLayer(layer),
+                        new MomentaryLayer(layer),
+                        new LayerOrAction(layer, Actions.Transparent)
+                    }));
     }
 }

@@ -201,6 +201,8 @@ namespace KeymapDesigner.Model
                         return new LayerOrAction(int.Parse(args.First()), Action.Parse(args.Skip(1).Single()));
                     case "LALT":
                         return new AltAndAction(Action.Parse(args.Single()));
+                    case "LCTL":
+                        return new ControlAndAction(Action.Parse(args.Single()));
                 }
             }
             return null;

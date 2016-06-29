@@ -30,10 +30,10 @@ namespace KeymapDesigner.Model
                 Key(y: 77, x: 351, w: 54, h: 81),
 
                 Key(y: 138, x: 0, w: 81, h: 54),
-                Key(y: 138, x: 81, w: 54, h: 54),
-                Key(y: 125, x: 135, w: 54, h: 54),
-                Key(y: 118, x: 189, w: 54, h: 54),
-                Key(y: 125, x: 243, w: 54, h: 54),
+                Key(y: 138, x: 81, w: 54, h: 54, keyType: PhysicalKeyType.HomeRow),
+                Key(y: 125, x: 135, w: 54, h: 54, keyType: PhysicalKeyType.HomeRow),
+                Key(y: 118, x: 189, w: 54, h: 54, keyType: PhysicalKeyType.HomeRow),
+                Key(y: 125, x: 243, w: 54, h: 54, keyType: PhysicalKeyType.IndexFinger),
                 Key(y: 131, x: 297, w: 54, h: 54),
 
                 Key(y: 192, x: 0, w: 81, h: 54),
@@ -77,10 +77,10 @@ namespace KeymapDesigner.Model
                 Key(y: 84, x: 974, w: 81, h: 54),
 
                 Key(y: 131, x: 704, w: 54, h: 54),
-                Key(y: 125, x: 758, w: 54, h: 54),
-                Key(y: 118, x: 812, w: 54, h: 54),
-                Key(y: 125, x: 866, w: 54, h: 54),
-                Key(y: 138, x: 920, w: 54, h: 54),
+                Key(y: 125, x: 758, w: 54, h: 54, keyType: PhysicalKeyType.IndexFinger),
+                Key(y: 118, x: 812, w: 54, h: 54, keyType: PhysicalKeyType.HomeRow),
+                Key(y: 125, x: 866, w: 54, h: 54, keyType: PhysicalKeyType.HomeRow),
+                Key(y: 138, x: 920, w: 54, h: 54, keyType: PhysicalKeyType.HomeRow),
                 Key(y: 138, x: 974, w: 81, h: 54),
 
                 Key(y: 158, x: 650, w: 54, h: 81),

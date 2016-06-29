@@ -32,5 +32,24 @@
                 </ScrollViewer>
             </DockPanel>
         </TabItem>
+        <TabItem Header="Instructions">
+            <TextBox AcceptsReturn="True" IsReadOnly="True" IsReadOnlyCaretVisible="True">
+<![CDATA[
+                "C:\MinGW\msys\1.0\msys.bat"
+
+One time:
+    mkdir /qmk_firmware
+    mount 'C:\work\qmk_firmware' /qmk_firmware
+
+
+cd /qmk_firmware/keyboard/ergodox_ez
+make KEYMAP=jelle && avr-objcopy -O ihex -R .eeprom -R .fuse -R .lock -R .signature ergodox_ez.elf ergodox_ez.hex
+
+/qmk_firmware/teensy &
+/qmk_firmware/hid_listen &
+                
+                ]]>
+            </TextBox>
+        </TabItem>
     </TabControl>
 </Window>

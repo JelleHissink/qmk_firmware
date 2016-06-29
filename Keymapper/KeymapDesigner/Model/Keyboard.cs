@@ -15,9 +15,9 @@ namespace KeymapDesigner.Model
 
         public PhysicalKey[] PhysicalKeys { get; }
 
-        protected static PhysicalKey Key(double x, double y, double w = 1.0, double h = 1.0, double r = 0.0)
+        protected static PhysicalKey Key(double x, double y, double w = 1.0, double h = 1.0, double r = 0.0, PhysicalKeyType keyType = PhysicalKeyType.Normal)
         {
-            return new PhysicalKey(left: x, top: y, width: w, height: h, rotation: r);
+            return new PhysicalKey(left: x, top: y, width: w, height: h, rotation: r, keyType: keyType);
         }
 
         public string Name => GetType().Name;

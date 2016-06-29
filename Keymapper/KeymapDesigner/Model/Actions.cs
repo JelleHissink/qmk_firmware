@@ -558,5 +558,35 @@ namespace KeymapDesigner.Model
         public override Key Key => Other?.Key ?? Key.None;
         public override ModifierKeys Modifiers => ModifierKeys.Alt | (Other?.Modifiers ?? ModifierKeys.None);
     }
-    
+
+    public class ControlAndAction : Action
+    {
+        public ControlAndAction(Action other)
+        {
+            Other = other;
+        }
+
+        public override ActionCategory Category => ActionCategory.Layers;
+
+        private static string AltPlus(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return text;
+            }
+            return $"CTRL+{text}";
+        }
+
+        public override string CCode => $"LCTL({Other.CCode})";
+        public override string Label => AltPlus(Other.Label);
+        public override string ShiftLabel => AltPlus(Other.ShiftLabel);
+        public override string AltLabel => AltPlus(Other.AltLabel);
+        public override string AltShiftLabel => AltPlus(Other.AltShiftLabel);
+
+        public Action Other { get; }
+
+        public override Key Key => Other?.Key ?? Key.None;
+        public override ModifierKeys Modifiers => ModifierKeys.Control | (Other?.Modifiers ?? ModifierKeys.None);
+    }
+
 }

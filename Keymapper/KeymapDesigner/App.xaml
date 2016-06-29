@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:KeymapDesigner"
              xmlns:converters="clr-namespace:KeymapDesigner.Converters"
+             xmlns:model="clr-namespace:KeymapDesigner.Model"             
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <converters:ColorToSolidColorBrushValueConverter x:Key="ColorToSolidColorBrush_ValueConverter"/>
@@ -10,35 +11,61 @@
         <converters:ActionToStringConverter x:Key="ActionToString_ValueConverter" />
         <converters:ActionToKeyAssignmentConverter x:Key="ActionToKeyAssignment_MultiValueConverter" />
 
+        <Style x:Key="KeyBorderDisplayStyle" TargetType="{x:Type Border}">
+            <Style.Setters>
+                <Setter Property="BorderThickness" Value="1,1,2,4" />
+                <!--<Setter Property="BorderThickness" Value="2,1,3,6" />-->
+                <Setter Property="BorderBrush" Value="DarkSlateGray" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger 
+                    Binding="{Binding Path=Key.KeyType}" 
+                    Value="HomeRow">
+                    <DataTrigger.Setters>
+                        <Setter Property="BorderBrush" Value="Black" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+                <DataTrigger 
+                    Binding="{Binding Path=Key.KeyType}" 
+                    Value="{x:Static model:PhysicalKeyType.IndexFinger}">
+                    <DataTrigger.Setters>
+                        <Setter Property="BorderBrush" Value="Black" />
+                        <Setter Property="BorderThickness" Value="2,2,3,6" />
+                    </DataTrigger.Setters>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
         <Style TargetType="{x:Type local:KeyAssignmentDisplayControl}">
             <Style.Setters>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:KeyAssignmentDisplayControl}">
                             <Border 
+                                Name="keyBorder"
                                 Focusable="False"
                                 IsHitTestVisible="True"
-                                Width="{Binding Path=KeyAssignment.Key.Width, RelativeSource={RelativeSource TemplatedParent}}"
-                                Height="{Binding Path=KeyAssignment.Key.Height, RelativeSource={RelativeSource TemplatedParent}}"
-                                Background="{Binding Path=KeyAssignment.Layer.Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorToSolidColorBrush_ValueConverter}}"
-                                TextElement.Foreground="{Binding Path=KeyAssignment.Layer.TextColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorToSolidColorBrush_ValueConverter}}"
+                                DataContext = "{Binding Path=KeyAssignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                Width="{Binding Path=Key.Width}"
+                                Height="{Binding Path=Key.Height}"
+                                Background="{Binding Path=Layer.Color, Converter={StaticResource ColorToSolidColorBrush_ValueConverter}}"
+                                TextElement.Foreground="{Binding Path=Layer.TextColor, Converter={StaticResource ColorToSolidColorBrush_ValueConverter}}"
                                 CornerRadius="8"
-                                BorderThickness="2,1,3,6"
-                                BorderBrush="Gray">
-                                <Grid
+                                Style="{StaticResource KeyBorderDisplayStyle}">
+                                <Grid 
                                     IsHitTestVisible="False">
-                                    <Label 
-                                        Content="{Binding KeyAssignment.Action.ShiftLabel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <Label Name="shiftLabel"
+                                        Content="{Binding Action.ShiftLabel}" />
                                     <Label
                                         VerticalAlignment="Bottom"
-                                        Content="{Binding KeyAssignment.Action.Label, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        Content="{Binding Action.Label}" />
                                     <Label 
                                         HorizontalAlignment="Right"
-                                        Content="{Binding KeyAssignment.Action.AltShiftLabel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        Content="{Binding Action.AltShiftLabel}" />
                                     <Label 
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Bottom"
-                                        Content="{Binding KeyAssignment.Action.AltLabel, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        Content="{Binding Action.AltLabel}" />
                                 </Grid>
                             </Border>
                         </ControlTemplate>
